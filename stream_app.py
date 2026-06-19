@@ -717,7 +717,7 @@ def main():
             data=pdf_data,
             file_name=f"OPUC_Objection_{active_docket_num.replace(' ', '_')}.pdf",
             mime="application/pdf",
-            use_container_width=True
+            width="stretch"
         )
         
     with col_inst:
@@ -742,7 +742,7 @@ def main():
                 data=pge_mock_data,
                 file_name="mock_pge_bill.pdf",
                 mime="application/pdf",
-                use_container_width=True
+                width="stretch"
             )
         with col_m2:
             pp_mock_data = generate_mock_bill_pdf("Pacific Power")
@@ -751,8 +751,18 @@ def main():
                 data=pp_mock_data,
                 file_name="mock_pacific_power_bill.pdf",
                 mime="application/pdf",
-                use_container_width=True
+                width="stretch"
             )
+            
+    # Subtle, privacy-focused audit hit counter badge in the footer
+    st.markdown("---")
+    st.markdown(
+        '<div style="text-align: center; font-size: 0.85rem; color: #8C8C8C; margin-top: 1rem;">'
+        'Anonymously Audited Bills Count: '
+        '<img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Foregon-energy-auditor.streamlit.app&count_bg=%237F00FF&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=Audits&edge_flat=false" style="vertical-align: middle; margin-left: 5px;"/>'
+        '</div>',
+        unsafe_allow_html=True
+    )
 
 
 if __name__ == "__main__":
